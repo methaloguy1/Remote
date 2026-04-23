@@ -62,8 +62,10 @@
         %(PreprocessorDefinitions)
       </PreprocessorDefinitions>
 
-      <LanguageStandard>stdc17</LanguageStandard>
+      <!-- FIXED -->
+      <LanguageStandard>stdc11</LanguageStandard>
       <LanguageStandard_Cpp>stdcpp17</LanguageStandard_Cpp>
+
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
     </ClCompile>
@@ -95,10 +97,6 @@
 
     <!-- microstack -->
     <ClCompile Include="microstack\*.c" />
-
-    <!-- webrtc (ILib WebRTC only, NOT samples) -->
-    <ClCompile Include="microstack\ILibWebRTC.c" />
-    <ClCompile Include="microscript\ILibDuktape_WebRTC.c" />
   </ItemGroup>
 
   <!-- Header files -->
