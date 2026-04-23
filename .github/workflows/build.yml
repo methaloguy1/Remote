@@ -1,0 +1,25 @@
+name: Build MeshAgent EXE
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.3.1
+
+    - name: Build MeshAgent
+      run: msbuild MeshAgent-2022.sln /p:Configuration=Release /p:Platform=x64
+
+    - name: Upload meshagent.exe
+      uses: actions/upload-artifact@v3
+      with:
+        name: meshagent-exe
+        path: x64/Release/meshagent.exe
