@@ -1,0 +1,65 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+    <Filter Include="meshcore">
+      <UniqueIdentifier>{10000000-0000-0000-0000-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="meshcore\KVM">
+      <UniqueIdentifier>{10000000-0000-0000-0000-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="meshcore\KVM\Windows">
+      <UniqueIdentifier>{10000000-0000-0000-0000-000000000003}</UniqueIdentifier>
+    </Filter>
+
+    <Filter Include="microscript">
+      <UniqueIdentifier>{20000000-0000-0000-0000-000000000001}</UniqueIdentifier>
+    </Filter>
+
+    <Filter Include="microstack">
+      <UniqueIdentifier>{30000000-0000-0000-0000-000000000001}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+
+  <!-- Source files -->
+  <ItemGroup>
+    <ClCompile Include="meshcore\*.c">
+      <Filter>meshcore</Filter>
+    </ClCompile>
+    <ClCompile Include="meshcore\KVM\Windows\*.c">
+      <Filter>meshcore\KVM\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="meshcore\KVM\Windows\tile.cpp">
+      <Filter>meshcore\KVM\Windows</Filter>
+    </ClCompile>
+
+    <ClCompile Include="microscript\*.c">
+      <Filter>microscript</Filter>
+    </ClCompile>
+
+    <ClCompile Include="microstack\*.c">
+      <Filter>microstack</Filter>
+    </ClCompile>
+
+    <ClCompile Include="microstack\ILibWebRTC.c">
+      <Filter>microstack</Filter>
+    </ClCompile>
+
+    <ClCompile Include="microscript\ILibDuktape_WebRTC.c">
+      <Filter>microscript</Filter>
+    </ClCompile>
+  </ItemGroup>
+
+  <!-- Header files -->
+  <ItemGroup>
+    <ClInclude Include="meshcore\**\*.h">
+      <Filter>meshcore</Filter>
+    </ClInclude>
+    <ClInclude Include="microscript\**\*.h">
+      <Filter>microscript</Filter>
+    </ClInclude>
+    <ClInclude Include="microstack\**\*.h">
+      <Filter>microstack</Filter>
+    </ClInclude>
+  </ItemGroup>
+
+</Project>
