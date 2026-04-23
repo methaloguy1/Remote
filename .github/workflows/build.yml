@@ -12,14 +12,20 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v2
+    - name: Install MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          mingw-w64-x86_64-gcc
+          make
 
     - name: Build MeshAgent
-      run: msbuild MeshAgent-2022.sln /p:Configuration=Release /p:Platform=x64
+      shell: msys2 {0}
+      run: make
 
     - name: Upload meshagent.exe
       uses: actions/upload-artifact@v4
       with:
         name: meshagent-exe
-        path: x64/Release/meshagent.exe
+        path: meshagent.exe
