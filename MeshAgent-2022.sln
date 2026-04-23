@@ -8,68 +8,15 @@ EndProject
 
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
-        Debug_NoOpenSSL|ARM64 = Debug_NoOpenSSL|ARM64
-        Debug_NoOpenSSL|x64 = Debug_NoOpenSSL|x64
-        Debug_NoOpenSSL|x86 = Debug_NoOpenSSL|x86
-        Debug|ARM64 = Debug|ARM64
         Debug|x64 = Debug|x64
-        Debug|x86 = Debug|x86
-        Library_Debug_NoOpenSSL|ARM64 = Library_Debug_NoOpenSSL|ARM64
-        Library_Debug_NoOpenSSL|x64 = Library_Debug_NoOpenSSL|x64
-        Library_Debug_NoOpenSSL|x86 = Library_Debug_NoOpenSSL|x86
-        Library_Release_NoOpenSSL|ARM64 = Library_Release_NoOpenSSL|ARM64
-        Library_Release_NoOpenSSL|x64 = Library_Release_NoOpenSSL|x64
-        Library_Release_NoOpenSSL|x86 = Library_Release_NoOpenSSL|x86
-        Release_NoOpenSSL|ARM64 = Release_NoOpenSSL|ARM64
-        Release_NoOpenSSL|x64 = Release_NoOpenSSL|x64
-        Release_NoOpenSSL|x86 = Release_NoOpenSSL|x86
-        Release|ARM64 = Release|ARM64
         Release|x64 = Release|x64
-        Release|x86 = Release|x86
     EndGlobalSection
 
     GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug_NoOpenSSL|ARM64.ActiveCfg = Debug_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug_NoOpenSSL|ARM64.Build.0 = Debug_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug_NoOpenSSL|x64.ActiveCfg = Debug_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug_NoOpenSSL|x64.Build.0 = Debug_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug_NoOpenSSL|x86.ActiveCfg = Debug_NoOpenSSL|Win32
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug_NoOpenSSL|x86.Build.0 = Debug_NoOpenSSL|Win32
-
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug|ARM64.ActiveCfg = Debug|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug|ARM64.Build.0 = Debug|ARM64
         {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug|x64.ActiveCfg = Debug|x64
         {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug|x64.Build.0 = Debug|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug|x86.ActiveCfg = Debug|Win32
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Debug|x86.Build.0 = Debug|Win32
-
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Debug_NoOpenSSL|ARM64.ActiveCfg = Library_Debug_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Debug_NoOpenSSL|ARM64.Build.0 = Library_Debug_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Debug_NoOpenSSL|x64.ActiveCfg = Library_Debug_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Debug_NoOpenSSL|x64.Build.0 = Library_Debug_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Debug_NoOpenSSL|x86.ActiveCfg = Library_Debug_NoOpenSSL|Win32
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Debug_NoOpenSSL|x86.Build.0 = Library_Debug_NoOpenSSL|Win32
-
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Release_NoOpenSSL|ARM64.ActiveCfg = Release_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Release_NoOpenSSL|ARM64.Build.0 = Release_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Release_NoOpenSSL|x64.ActiveCfg = Release_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Release_NoOpenSSL|x64.Build.0 = Release_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Release_NoOpenSSL|x86.ActiveCfg = Release_NoOpenSSL|Win32
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Library_Release_NoOpenSSL|x86.Build.0 = Release_NoOpenSSL|Win32
-
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release_NoOpenSSL|ARM64.ActiveCfg = Release_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release_NoOpenSSL|ARM64.Build.0 = Release_NoOpenSSL|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release_NoOpenSSL|x64.ActiveCfg = Release_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release_NoOpenSSL|x64.Build.0 = Release_NoOpenSSL|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release_NoOpenSSL|x86.ActiveCfg = Release_NoOpenSSL|Win32
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release_NoOpenSSL|x86.Build.0 = Release_NoOpenSSL|Win32
-
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release|ARM64.ActiveCfg = Release|ARM64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release|ARM64.Build.0 = Release|ARM64
         {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release|x64.ActiveCfg = Release|x64
         {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release|x64.Build.0 = Release|x64
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release|x86.ActiveCfg = Release|Win32
-        {A1B2C3D4-E5F6-47A8-9B0C-112233445566}.Release|x86.Build.0 = Release|Win32
     EndGlobalSection
 
     GlobalSection(SolutionProperties) = preSolution
