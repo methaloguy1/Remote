@@ -10,16 +10,16 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.3.1
+      uses: microsoft/setup-msbuild@v2
 
     - name: Build MeshAgent
       run: msbuild MeshAgent-2022.sln /p:Configuration=Release /p:Platform=x64
 
     - name: Upload meshagent.exe
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: meshagent-exe
         path: x64/Release/meshagent.exe
