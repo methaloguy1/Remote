@@ -1,0 +1,113 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A1B2C3D4-E5F6-47A8-9B0C-112233445566}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MeshAgent</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+  <!-- Release -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+
+  <!-- Debug -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+  <!-- Include paths -->
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>
+        meshcore;
+        microscript;
+        microstack;
+        webrtc;
+        %(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+
+      <PreprocessorDefinitions>
+        _CRT_SECURE_NO_WARNINGS;
+        DUK_USE_DEBUGGER_SUPPORT;
+        DUK_USE_INTERRUPT_COUNTER;
+        DUK_USE_DEBUGGER_INSPECT;
+        DUK_USE_DEBUGGER_PAUSE_UNCAUGHT;
+        MICROSTACK_TLS_DETECT;
+        WIN32;
+        _WINDOWS;
+        %(PreprocessorDefinitions)
+      </PreprocessorDefinitions>
+
+      <LanguageStandard>stdc17</LanguageStandard>
+      <LanguageStandard_Cpp>stdcpp17</LanguageStandard_Cpp>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+        ws2_32.lib;
+        iphlpapi.lib;
+        user32.lib;
+        advapi32.lib;
+        crypt32.lib;
+        winmm.lib;
+        %(AdditionalDependencies)
+      </AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <!-- Source files -->
+  <ItemGroup>
+    <!-- meshcore -->
+    <ClCompile Include="meshcore\*.c" />
+    <ClCompile Include="meshcore\KVM\Windows\*.c" />
+    <ClCompile Include="meshcore\KVM\Windows\tile.cpp" />
+
+    <!-- microscript -->
+    <ClCompile Include="microscript\*.c" />
+
+    <!-- microstack -->
+    <ClCompile Include="microstack\*.c" />
+
+    <!-- webrtc (ILib WebRTC only, NOT samples) -->
+    <ClCompile Include="microstack\ILibWebRTC.c" />
+    <ClCompile Include="microscript\ILibDuktape_WebRTC.c" />
+  </ItemGroup>
+
+  <!-- Header files -->
+  <ItemGroup>
+    <ClInclude Include="meshcore\**\*.h" />
+    <ClInclude Include="microscript\**\*.h" />
+    <ClInclude Include="microstack\**\*.h" />
+  </ItemGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+
+</Project>
