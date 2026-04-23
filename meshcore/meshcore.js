@@ -1,6 +1,6 @@
 //
-// Minimal MeshAgent WebRTC Signaling + Viewer Server
-// Designed for standalone .exe builds
+// Minimal standalone MeshAgent WebRTC server
+// Works with your exact repo structure
 //
 
 var http = require('http');
@@ -9,36 +9,36 @@ var webrtc = require('webrtc');
 var fs = require('fs');
 
 // -------------------------------
-// 1. Serve Viewer Files
+// 1. Serve viewer files
 // -------------------------------
 
-var viewerFiles = {
-    "/": "viewer/relay.htm",
-    "/relay.htm": "viewer/relay.htm",
-    "/relay.js": "viewer/relay.js",
-    "/meshcentral.js": "viewer/meshcentral.js",
-    "/agent-desktop.js": "viewer/agent-desktop-0.0.2.js",
-    "/agent-rdp.js": "viewer/agent-rdp-0.0.1.js",
-    "/agent-redir-rtc.js": "viewer/agent-redir-rtc-0.1.0.js",
-    "/agent-redir-ws.js": "viewer/agent-redir-ws-0.1.1.js"
-};
+function serveFile(path) {
+    try {
+        return fs.readFileSync(__dirname + "/viewer/" + path);
+    } catch (e) {
+        return null;
+    }
+}
 
 var server = http.createServer(function (req, res) {
-    var file = viewerFiles[req.url];
+    var file = null;
+
+    if (req.url === "/" || req.url === "/relay.htm") file = serveFile("relay.htm");
+    else if (req.url === "/relay.js") file = serveFile("relay.js");
+    else if (req.url === "/meshcentral.js") file = serveFile("meshcentral.js");
+    else if (req.url === "/agent-desktop.js") file = serveFile("agent-desktop-0.0.2.js");
+    else if (req.url === "/agent-rdp.js") file = serveFile("agent-rdp-0.0.1.js");
+    else if (req.url === "/agent-redir-rtc.js") file = serveFile("agent-redir-rtc-0.1.0.js");
+    else if (req.url === "/agent-redir-ws.js") file = serveFile("agent-redir-ws-0.1.1.js");
+
     if (!file) {
         res.writeHead(404);
         res.end("Not found");
         return;
     }
 
-    try {
-        var data = fs.readFileSync(__dirname + "/" + file);
-        res.writeHead(200);
-        res.end(data);
-    } catch (e) {
-        res.writeHead(500);
-        res.end("Error loading file");
-    }
+    res.writeHead(200);
+    res.end(file);
 });
 
 server.listen(8080);
@@ -46,45 +46,42 @@ console.log("HTTP server running on port 8080");
 
 
 // -------------------------------
-// 2. WebRTC Signaling Server
+// 2. WebRTC signaling
 // -------------------------------
 
 var wss = new ws.Server({ server: server });
-var rtcSession = null;
+var rtc = null;
 
 wss.on('connection', function (socket) {
-    console.log("Browser connected to signaling server");
+    console.log("Browser connected");
 
     socket.on('message', function (msg) {
         var data = JSON.parse(msg);
 
-        // Browser → Offer
         if (data.type === "offer") {
-            rtcSession = webrtc.createConnection();
+            rtc = webrtc.createConnection();
 
-            rtcSession.onicecandidate = function (cand) {
+            rtc.onicecandidate = function (cand) {
                 socket.send(JSON.stringify({ type: "ice", candidate: cand }));
             };
 
-            rtcSession.ondatachannel = function (dc) {
-                console.log("WebRTC data channel established");
+            rtc.ondatachannel = function (dc) {
+                console.log("WebRTC data channel ready");
 
                 dc.onmessage = function (msg) {
-                    // Browser input → MeshAgent native KVM
                     agent.KVM.sendInput(msg.data);
                 };
             };
 
-            rtcSession.setRemoteDescription(data);
-            rtcSession.createAnswer(function (answer) {
-                rtcSession.setLocalDescription(answer);
+            rtc.setRemoteDescription(data);
+            rtc.createAnswer(function (answer) {
+                rtc.setLocalDescription(answer);
                 socket.send(JSON.stringify(answer));
             });
         }
 
-        // Browser → ICE
-        if (data.type === "ice") {
-            if (rtcSession) rtcSession.addIceCandidate(data.candidate);
+        if (data.type === "ice" && rtc) {
+            rtc.addIceCandidate(data.candidate);
         }
     });
 });
@@ -93,13 +90,13 @@ console.log("WebRTC signaling active");
 
 
 // -------------------------------
-// 3. Connect MeshAgent KVM to WebRTC
+// 3. Connect MeshAgent KVM → WebRTC
 // -------------------------------
 
 agent.KVM.onFrame = function (frame) {
-    if (rtcSession && rtcSession.dataChannel) {
-        rtcSession.dataChannel.send(frame);
+    if (rtc && rtc.dataChannel) {
+        rtc.dataChannel.send(frame);
     }
 };
 
-console.log("MeshAgent KVM → WebRTC bridge active");
+console.log("KVM → WebRTC bridge active");
