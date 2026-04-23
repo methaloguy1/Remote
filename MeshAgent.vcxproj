@@ -39,7 +39,6 @@
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
 
-  <!-- Include paths -->
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>
@@ -62,8 +61,8 @@
         %(PreprocessorDefinitions)
       </PreprocessorDefinitions>
 
-      <!-- FIXED -->
-      <LanguageStandard>stdc11</LanguageStandard>
+      <!-- REMOVE INVALID C STANDARD -->
+      <!-- KEEP VALID C++ STANDARD -->
       <LanguageStandard_Cpp>stdcpp17</LanguageStandard_Cpp>
 
       <WarningLevel>Level3</WarningLevel>
@@ -85,21 +84,16 @@
     </Link>
   </ItemDefinitionGroup>
 
-  <!-- Source files -->
   <ItemGroup>
-    <!-- meshcore -->
     <ClCompile Include="meshcore\*.c" />
     <ClCompile Include="meshcore\KVM\Windows\*.c" />
     <ClCompile Include="meshcore\KVM\Windows\tile.cpp" />
 
-    <!-- microscript -->
     <ClCompile Include="microscript\*.c" />
 
-    <!-- microstack -->
     <ClCompile Include="microstack\*.c" />
   </ItemGroup>
 
-  <!-- Header files -->
   <ItemGroup>
     <ClInclude Include="meshcore\**\*.h" />
     <ClInclude Include="microscript\**\*.h" />
